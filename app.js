@@ -53,6 +53,26 @@ function addMember() {
             ],
             name: "moreMembers"
         }])
-        .then(function())
-    })
+        .then(function({roleInfo, moreMembers}){
+            let newMember;
+            if(role === "Engineer") {
+                newMember = new Engineer(name, id, email, roleInfo);
+            } else if (roleInfo === "Intern") {
+                newMember = new Intern(name, id, email, roleInfo);
+            }
+            employees.push(newMember);
+            addHtml(newMember)
+            .then(function() {
+                if (moreMembers === "yes") {
+                    addMember();
+                } else {
+                    finishHtml();
+                }
+            });
+        });
+    });
+}
+
+function startHTML() {
+    const html = ``
 }
