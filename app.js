@@ -129,7 +129,61 @@ function addHtml(member) {
             </div>
         </div>`;
         } else {
-            
+            const officePhone = member.getOfficeNumber();
+            data = `<div class="col-6">
+            <div class="card mx-auto mb-3" style="width: 18rem">
+            <h5 class="card-header">${name}<br /><br />Manager</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email Address: ${email}</li>
+                <li class="list-group-item">Office Phone: ${officePhone}</li>
+            </ul>
+            </div>
+        </div>`
         }
-    })
+        console.log("adding team member");
+        fs.appendFile("./output/employee.html", data, function(err) {
+            if (err) {
+                return reject(err);    
+            };
+            return resolve();
+        });
+    });
 }
+
+
+function finishHtml() {
+    const html = `</div>
+    </div>
+    
+</body>
+</html>`;
+
+fs.appendFile("./output/employee.html", html, function (err){
+    if (err) {
+        console.log(err);
+    };
+});
+
+console.log("end");
+}
+
+initApp();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
